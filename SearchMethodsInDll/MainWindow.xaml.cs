@@ -22,12 +22,12 @@ namespace SearchMethodsInDll
 
             if (result == Forms.DialogResult.OK)
             {
-                FolderPathTextBlock.Text = dialog.SelectedPath;
-
                 try
                 {
                     OutputTextBlock.Text = AssemblyManager.SearchPublicAndProtectedMethods(
                         DirectoryManager.SearchDllInDirectory(dialog.SelectedPath));
+
+                    FolderPathTextBlock.Text = dialog.SelectedPath;
                 }
                 catch (DirectoryNotFoundException ex)
                 {
