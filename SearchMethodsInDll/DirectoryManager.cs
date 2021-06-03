@@ -6,6 +6,11 @@ namespace SearchMethodsInDll
 {
     class DirectoryManager
     {
+        /// <summary>
+        /// Search *.dll files in a directory
+        /// </summary>
+        /// <param name="path">Directory full name</param>
+        /// <returns>Array with full *.dll file names in a directory</returns>
         public static string[] SearchDllInDirectory(string path)
         {
             string[] _dllFiles;
@@ -20,6 +25,11 @@ namespace SearchMethodsInDll
             }
         }
 
+        /// <summary>
+        /// Search public and protected methods in the *.dll files
+        /// </summary>
+        /// <param name="files">Array of *.dll file names</param>
+        /// <returns> String with classes and class's private and protected methods</returns>
         public static string SearchPublicAndProtectedMethods(string[] files)
         {
             //TODO: Обработать исключения
