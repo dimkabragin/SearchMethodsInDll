@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchMethodsInDll
 {
@@ -31,7 +27,7 @@ namespace SearchMethodsInDll
 
             for (int i = 0; i < files.Length; i++)
             {
-                var assembly = Assembly.Load(files[i]);
+                var assembly = Assembly.LoadFile(files[i]);
 
                 //str += $"{assembly.GetName()} \n";
 
