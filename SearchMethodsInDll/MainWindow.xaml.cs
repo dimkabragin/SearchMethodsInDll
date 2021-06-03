@@ -1,5 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Forms;
+﻿using System;
+using System.IO;
+using System.Windows;
+using Forms = System.Windows.Forms;
 
 namespace SearchMethodsInDll
 {
@@ -15,15 +17,29 @@ namespace SearchMethodsInDll
 
         private void ChooseFolderPathBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new FolderBrowserDialog();
+            var dialog = new Forms.FolderBrowserDialog();
             var result = dialog.ShowDialog();
 
-            if (result == System.Windows.Forms.DialogResult.OK)
+            if (result == Forms.DialogResult.OK)
             {
                 FolderPathTextBlock.Text = dialog.SelectedPath;
 
-                OutputTextBlock.Text = DirectoryManager.SearchPublicAndProtectedMethods(
-                    DirectoryManager.SearchDllInDirectory(dialog.SelectedPath));
+                try
+                {
+                    OutputTextBlock.Text = AssemblyManager.SearchPublicAndProtectedMethods(
+                        DirectoryManager.SearchDllInDirectory(dialog.SelectedPath));
+                }
+                catch (DirectoryNotFoundException ex)
+                {
+                    //В нашем случае крайне маловеротно, что данное ислючение произойдет
+                    //Но все равно обработаем для будущих поколений
+                    MessageBox.Show(ex.Message, "We can't found a this folder");
+                }
+                catch (Exception ex)
+                {
+                    //Тут ловим прочие исключения и информируем о них пользователя
+                    MessageBox.Show(ex.Message, "Oups, something went wrong");
+                }
             }
         }
     }
