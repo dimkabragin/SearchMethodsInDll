@@ -30,12 +30,12 @@
             </Button>
         </Grid>
 
-        <TextBlock Name="OutputTextBlock"
-                   Grid.Row="1" 
-                   Background="LightGray" 
-                   Margin="5">            
-        </TextBlock>
-        
-        
+        <ScrollViewer Grid.Row="1" Margin="5">
+            <TextBlock Name="OutputTextBlock"                   
+                   Background="LightGray"                   
+                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto">
+            </TextBlock>
+        </ScrollViewer>
     </Grid>
 </Window>
