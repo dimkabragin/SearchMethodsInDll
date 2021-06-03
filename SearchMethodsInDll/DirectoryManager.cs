@@ -29,13 +29,13 @@ namespace SearchMethodsInDll
             {
                 var assembly = Assembly.LoadFile(files[i]);
 
-                //str += $"{assembly.GetName()} \n";
-
                 foreach (Type type in assembly.GetTypes())
                 {
                     str += $"{type.Name} \n";
 
-                    foreach (MethodInfo method in type.GetMethods())
+                    foreach (MethodInfo method in type.GetMethods
+                        (BindingFlags.Public | BindingFlags.Instance | 
+                        BindingFlags.DeclaredOnly | BindingFlags.NonPublic))
                     {
                         if (method.IsPublic || method.IsFamily)
                         {
